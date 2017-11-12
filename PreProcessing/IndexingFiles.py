@@ -1,20 +1,20 @@
 import glob
 import os
 
-from User import User
+from Class.User import User
 
 
 # 'D:\CSTI\Social Data Analysis\Project\dataset_twitter\dataset'
 
 def run(path):
-    users = {}
+    files = {}
     counter = 0
     print('Indexing Files: START')
     for file in glob.glob(os.path.join(path, '*')):  # do your stuff
         iid = screen_name = description = location = url = lang = ''
         tweets_index = 0
         counter += 1
-        if counter % 1000 == 0:
+        if counter % 1000 == 0 or counter == 500:
             print(str(counter))
             break
         with open(file, 'r', encoding="utf8") as myfile:
@@ -51,10 +51,10 @@ def run(path):
                 if tweet.startswith('TweetId'):
                     continue
                 user.add_tweet(tweet)
-            users[iid] = user
+            files[iid] = user
     # words = ''
     # for user in users:
     #     words = users[user].words
     #     print(words)
     print('Indexing Files: END (' + str(counter) + ' indexed)')
-    return users
+    return files

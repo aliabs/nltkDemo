@@ -1,12 +1,14 @@
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from nltk.stem.wordnet import WordNetLemmatizer
 
 
 def run(users):
     print('Generating Dictionary: START')
     stop_words = set(stopwords.words('english'))
+    lmtzr = WordNetLemmatizer()
     counter = 0
-    filtered_sentence = []
+    filtered_words = []
 
     for user in users:
         counter += 1
@@ -17,8 +19,10 @@ def run(users):
         for w in word_tokens:
             # and not re.match("^[a-zA-Z0-9]*$", w)
             if w not in stop_words and len(w) > 1:
-                users[user].tags.append(w)
-                filtered_sentence.append(w)
-    filtered_sentence.sort(key=str.lower)
-    sort = list(set(filtered_sentence))
-    print('Generating Dictionary: END (' + str(len(sort)) + ' term)')
+                word_lemm = lmtzr.lemmatize(w)
+                users[user].tags.append(word_lemm)
+                filtered_words.append(word_lemm)
+        filtered_words.sort(key=str.lower)
+    sorted_words = list(set(filtered_words))
+    print('Generating Dictionary: END (' + str(len(sorted_words)) + ' term)')
+    return sorted_words
