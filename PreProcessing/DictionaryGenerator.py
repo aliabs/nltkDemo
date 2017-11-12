@@ -20,6 +20,7 @@ def run(users):
             # and not re.match("^[a-zA-Z0-9]*$", w)
             if w not in stop_words and len(w) > 1:
                 word_lemm = lmtzr.lemmatize(w)
+                word_lemm = word_lemm.lower()
                 users[user].tags.append(word_lemm)
                 filtered_words.append(word_lemm)
         filtered_words.sort(key=str.lower)

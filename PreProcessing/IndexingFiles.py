@@ -14,7 +14,7 @@ def run(path):
         iid = screen_name = description = location = url = lang = ''
         tweets_index = 0
         counter += 1
-        if counter % 1000 == 0 or counter == 500:
+        if counter % 1000 == 0 or counter == 5:
             print(str(counter))
             break
         with open(file, 'r', encoding="utf8") as myfile:

@@ -7,7 +7,7 @@ def run(dic_words, files):
     index = defaultdict(list)
     for word in dic_words:
         counter += 1
-        if counter % 1000 == 0 or counter == 5000:
+        if counter % 1000 == 0:
             print(str(counter))
         for file in files:
             if word in files[file].tags:

@@ -1,5 +1,4 @@
 
-
 class User:
     def __init__(self, iid, screen_name, description, location, url, lang):
         self.iid = iid
